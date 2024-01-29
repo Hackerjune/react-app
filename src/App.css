@@ -16,9 +16,15 @@ div{
 
 .list{
     border-bottom: 1px black solid;
-
+    padding: 10px;
 }
 
 .modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: lightgray;
+    height: 130px;
+    margin-top: 30px;
+    padding: 10px;
 }
