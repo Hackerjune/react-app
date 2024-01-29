@@ -2,11 +2,13 @@ import './App.css';
 import { useState } from 'react';
 
 function Modal(props){
-  return <div className='modal'>
-    <h4>{props.title}</h4>
-    <p>{props.date}</p>
-    <p>{props.inpo}</p>
-  </div>
+  return ( 
+    <div className='modal'>
+      <h4>{props.title}</h4>
+      <p>{props.date}</p>
+      <p>{props.inpo}</p>
+    </div>
+  )
 }
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
 
   // let [글제목3, setTitle3] = useState('파이썬독학');
 
-  let 발행일 = '2024-1-28'
+  let 발행일 = '2024-1-29'
 
   function 가나다순정렬(){
     let copy글제목 = [...글제목].sort();      
@@ -53,7 +55,7 @@ function App() {
         <p>{발행일}</p> 
       </div>
 
-      <Modal title='제목' date='2024-1-29' inpo='상세정보' className='modal1'></Modal>
+      <Modal title='제목' date={발행일} inpo='상세정보' className='modal1'></Modal>
     </div>
   );
 } 
