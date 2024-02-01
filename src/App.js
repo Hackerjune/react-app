@@ -11,7 +11,13 @@ function App() {
 
   let [modal, setModal] = useState(false);
 
+  let [상세정보, set상세정보] = useState(['무신사 코트', '유튜브', '오니기리']);
+
+  let [titles, setTitles] = useState(0); 
   
+  let [inputValue, setInputValue] = useState('');
+
+  let [inputInpo, setInpo] = useState('');
 
   // let [글제목2, setTitle2] = useState('우동 맛집');
 
@@ -34,19 +40,14 @@ function App() {
         <h4>{logo}</h4>
       </div>
 
-      <button onClick={ 가나다순정렬 }>가나다순정렬</button>
-      <span onClick={ () => { 
-        let copy = [...글제목];       // 새로운 배열에 기존 배열 삽입
-        copy[0] = '여자 코트 추천';        // 원본 보존형 코딩
-        setTitle(copy); } }>↺</span> 
+      <button className='setString' onClick={ 가나다순정렬 }>가나다순정렬</button>
+       
 
       
         {
           글제목.map(function(a, i){             // i는 반복 실행 될때마다 1씩 증가함
             return ( <div className='list'>
-                    <h4 onClick={ ()=>{ setModal(!modal)
-                     
-                      } } >{글제목[i]} </h4> 
+                    <h4 onClick={ ()=>{ setModal(!modal); setTitles(i)} } >{글제목[i]} </h4> 
 
                     <span onClick={ () => { 
                       let copy따봉 = [...따봉];
@@ -59,23 +60,60 @@ function App() {
           })
         }
 
+       
+        <div className='extra'>
+    
+          <input type='textbox' onChange={  
+            function handleInputChange(event){
+
+              setInputValue(event.target.value)
+
+            }  }></input>   
+
+          <button onClick={ 
+            function(){
+              
+              setTitle([...글제목, inputValue]);
+              setInputValue(' ');
+              따봉변경([...따봉, 0])
+
+            } }>게시</button>
+
+            <textarea onChange={ function(event){
+              setInpo(event.target.value)
+            } }></textarea>
+
+            <button onClick={ function(){
+
+              set상세정보([...상세정보, inputInpo]);
+              setInpo('');
+
+            } }>상세정보 작성하기</button>
+
+          </div>  
 
 
 {
-  modal === true ?  <Modal  setTitleFunction={setTitle} setTitle={글제목} title={글제목[0]} date={발행일} inpo='상세정보' className='modal1'></Modal> : null
+  modal === true ?  <Modal  titles={titles} setTitleFunction={setTitle} setTitle={글제목}  date={발행일} inpo={상세정보} className='modal1'></Modal> : null
 } 
+
 
      
     </div>
   );
 } 
+  
+  
+// 변수를 갖다가 컴포넌트에 넣고싶으면 무조건 props를 통하여
+
+
 
 function Modal(props){
   return ( 
     <div className='modal'>
-      <h4>{props.title}</h4>
+      <h4>{props.setTitle[props.titles]}</h4>      
       <p>{props.date}</p>
-      <p>{props.inpo}</p>
+      <p>{props.inpo[props.titles]}</p>
       <button onClick={ function(){
         let modal글제목 = [...props.setTitle]
         modal글제목[0] = "여자 코트 추천"
